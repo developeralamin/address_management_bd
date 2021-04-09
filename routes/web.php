@@ -1,0 +1,50 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('dashboard');
+});
+
+
+//Route for UserGroup
+use App\Http\Controllers\Backend\DivisionController;
+Route::get('division',[DivisionController::class, 'index'])->name('division');
+Route::get('division/create',[DivisionController::class, 'create'])->name('division.create');
+Route::post('division',[DivisionController::class, 'store'])->name('division.store');
+Route::get('division/edit/{id}',[DivisionController::class,'edit'])->name('division.edit');
+
+Route::post('division/update/{id}',[DivisionController::class,'update'])->name('division.update');
+// Route::get('division/details/{id}',[DivisionController::class,'details'])->name('division.details');
+Route::delete('division/{id}',[DivisionController::class,'destroy']);
+
+
+
+// Route::get('district',[DistrictController::class, 'index'])->name('district');
+// Route::get('district/create',[DistrictController::class, 'create'])->name('district.create');
+// Route::post('district',[DistrictController::class, 'store'])->name('district.store');
+// Route::get('district/edit/{id}',[DistrictController::class,'edit'])->name('district.edit');
+
+// Route::post('district/update/{id}',[DistrictController::class,'update'])->name('district.update');
+// // Route::get('district/details/{id}',[DistrictController::class,'details'])->name('district.details');
+// Route::delete('district/{id}',[DistrictController::class,'destroy']);
+
+use App\Http\Controllers\Backend\ZillaController;
+Route::resource('district', ZillaController::class);
+
+use App\Http\Controllers\Backend\UpazillaController;
+Route::resource('upazilla', UpazillaController::class);
+
+use App\Http\Controllers\Backend\DefaultController;
+Route::get('/get-district',[DefaultController::class, 'index'])->name('default.get-district');
