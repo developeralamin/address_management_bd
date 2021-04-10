@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Controllers\Backend\DashboardController;
+Route::get('/dashboard',[DashboardController::class,'index'])->name('/dashboard');
+Route::get('/',[DashboardController::class,'index'])->name('/dashboard');
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+// Route::get('/', function () {
+//     return view('dashboard');
+// });
 
 
 //Route for UserGroup
@@ -48,3 +51,9 @@ Route::resource('upazilla', UpazillaController::class);
 
 use App\Http\Controllers\Backend\DefaultController;
 Route::get('/get-district',[DefaultController::class, 'index'])->name('default.get-district');
+
+Route::get('/get-upazilla',[DefaultController::class, 'upazilla'])->name('default.get-upazilla');
+
+
+use App\Http\Controllers\Backend\UnionController;
+Route::resource('union_all', UnionController::class);

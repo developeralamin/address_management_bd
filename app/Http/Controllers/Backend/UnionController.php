@@ -5,19 +5,19 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\UpazillaRequest;
+use App\Http\Requests\UnionRequest;
 use App\Models\Division;
 use App\Models\ZillaNew;
 use App\Models\Thanaaa;
+use App\Models\Union;
 
-class UpazillaController extends Controller
 
+class UnionController extends Controller
 {
-    
-     public function __construct()
+   public function __construct()
      {
         parent::__construct();
-        $this->data['main_menu']  = 'Upazilla';
+        $this->data['main_menu']  = 'Union';
         $this->data['sub_menu']   = 'View';
 
      }
@@ -28,9 +28,10 @@ class UpazillaController extends Controller
      */
     public function index()
     {
-        $this->data['data'] = Thanaaa::all();
 
-        return view('backend.upazilla.view-upazilla',$this->data);
+        $this->data['data'] = Union::all();
+
+        return view('backend.union.view-union',$this->data);
 
     }
 
@@ -44,7 +45,7 @@ class UpazillaController extends Controller
            // $this->data['mode']              = 'Create';
            $this->data['division']          = Division::arrayForSelectDivision();
 
-         return view('backend.upazilla.form-upazilla',$this->data);
+         return view('backend.union.form-union',$this->data);
     }
 
     /**
@@ -56,18 +57,21 @@ class UpazillaController extends Controller
     public function store(Request $request)
     {
       $this->validate($request,[
-          'name'     => 'required|unique:thanaaas,name',
+          'union'     => 'required|unique:unions,union',
         ]);
 
-        $upazilla                 = New Thanaaa();
+        $union                 = New Union();
 
-        $upazilla->division_id    = $request->division_id;
-        $upazilla->district_id    = $request->district_id;
-        $upazilla->name           = $request->name;
+        $union->division_id     = $request->division_id;
+        $union->district_id     = $request->district_id;
+        $union->upazilla_id     = $request->upazilla_id;
+        $union->union           = $request->union;
 
-        $upazilla->save();
+        if($union->save()){
+            Session::flash('message','Data Added Successfully');
+        }
 
-        return redirect()->to('upazilla')->with('Data Added Successfully');
+        return redirect()->to('union_all');
 
     }
 
@@ -91,12 +95,12 @@ class UpazillaController extends Controller
     public function edit($id)
     {
        
-        $this->data['editdata']             = Thanaaa::findOrFail($id);
+        $this->data['editdata']             = Union::findOrFail($id);
         $this->data['division']             = Division::arrayForSelectDivision();
         // $this->data['district']             = ZillaNew::findOrFail($id);
        
 
-         return view('backend.upazilla.form-upazilla',$this->data);
+        return view('backend.union.form-union',$this->data);
     }
 
     /**
@@ -106,19 +110,20 @@ class UpazillaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpazillaRequest $request, $id)
+    public function update(UnionRequest $request, $id)
     {
-        $upazilla                 = Thanaaa::find($id);
+        $union                  = Union::find($id);
 
-        $upazilla->division_id    = $request->division_id;
-        $upazilla->district_id    = $request->district_id;
-        $upazilla->name           = $request->name;
+        $union->division_id     = $request->division_id;
+        $union->district_id     = $request->district_id;
+        $union->upazilla_id     = $request->upazilla_id;
+        $union->union           = $request->union;
 
-       if($upazilla->save()){
-        Session::flash('message','Data Updated Successfully');
-       }
+        if($union->save()){
+            Session::flash('message','Data Update Successfully');
+        }
 
-        return redirect()->to('upazilla');
+        return redirect()->to('union_all');
     }
 
     /**
@@ -129,9 +134,11 @@ class UpazillaController extends Controller
      */
     public function destroy($id)
     {
-         if(Thanaaa::find($id)->delete()){
+         if(Union::find($id)->delete()){
             Session::flash('message','Data Delete Successfully');
         }
-        return redirect()->to('upazilla');
+        return redirect()->to('union_all');
     }
+
+
 }

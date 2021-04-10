@@ -34,4 +34,9 @@ class Division extends Model
         return $this->hasmany(Thanaaa::class);
     }
 
+     public function union()
+    {
+        return $this->hasmany(Union::class);
+    }
+
 }

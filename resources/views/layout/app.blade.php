@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('home') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('/dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                     {{-- <i class="fa fa-medkit" aria-hidden="true" style="color:red;"></i> --}}
@@ -43,8 +43,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href=" {{ url('home') }}">
+            <li class="nav-item @if ($main_menu == 'Dashboard') active @endif">
+                <a class="nav-link" href=" {{ route('/dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -83,7 +83,7 @@
             </li>
           
       <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item @if($main_menu == 'Division') active @endif">
+            <li class="nav-item @if ($main_menu == 'Division') active @endif">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collaspefour"
                     aria-expanded="true" aria-controls="collaspefour">
                    <i class="fa fa-crosshairs" aria-hidden="true"></i>
@@ -128,16 +128,16 @@
                 </div>
             </li>       
     <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item @if($main_menu == 'Union') active @endif">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseseven"
                     aria-expanded="true" aria-controls="collapseseven">
                     {{-- <i class="fas fa-fw fa-cog"></i> --}}
                     <i class="fa fa-newspaper"></i>
                     <span>Manage Union</span>
                 </a>
-                <div id="collapseseven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseseven" class="collapse  @if($main_menu == 'Union') show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ url('news') }}">View Union</a>
+                        <a class="collapse-item @if($sub_menu == 'View') active @endif" href="{{ url('union_all') }}">View Union</a>
                        
                     </div>
                 </div>

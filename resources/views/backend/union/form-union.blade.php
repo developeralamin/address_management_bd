@@ -7,20 +7,20 @@
 @if(@$editdata)
      <div class="col-md-6">
        <h2 class="m-0 font-weight-bold text-primary">
-          Update Upazilla
+          Update Union
          </h2>
      </div>
 @else
     <div class="col-md-6">
        <h2 class="m-0 font-weight-bold text-primary">
-          Add Upazilla
+          Add Union
          </h2>
      </div>
 
 @endif
  
   	<div class="col-md-6 text-right">
-  	 	<a href="{{ url('upazilla') }}" class="btn btn-danger"> <i class="fa fa-minus"></i> Back </a>
+  	 	<a href="{{ url('union_all') }}" class="btn btn-danger"> <i class="fa fa-minus"></i> Back </a>
   	 </div>
   </div>
   
@@ -40,14 +40,14 @@
  @if(@$editdata)
      <div class="card-header py-3">
        <h6 class="m-0 font-weight-bold text-primary">
-         Update Upazilla
+         Update Union
       </h6>  
      </div>
     @else
 
     <div class="card-header py-3">
        <h6 class="m-0 font-weight-bold text-primary">
-         Add Upazilla
+         Add Union
       </h6>  
      </div>
 
@@ -56,13 +56,13 @@
       <div class="card-body row justify-content-md-center">
   <div class="col-md-6">
 
-    @if(@$editdata))
+    @if(@$editdata)
 
-    {{  Form::model($editdata,['route' =>['upazilla.update',$editdata->id], 'method' => 'put']) }}
+    {{  Form::model($editdata,['route' =>['union_all.update',$editdata->id], 'method' => 'put']) }}
    
     @else
 
-    {!! Form::open(['route' => 'upazilla.store','method' => 'post']) !!}
+    {!! Form::open(['route' => 'union_all.store','method' => 'post']) !!}
 
     @endif
 
@@ -79,7 +79,7 @@
    </select>   --}}
 
     <font style="color: red">
-      {{ ($errors->has('division'))?($errors->first('division')):'' }}
+      {{ ($errors->has('division_id'))?($errors->first('division_id')):'' }}
      </font>
   </div>
 
@@ -89,17 +89,31 @@
          <option value=""> Select District</option>
   </select>  
    <font style="color: red">
-      {{ ($errors->has('name'))?($errors->first('name')):'' }}
+      {{ ($errors->has('district_id'))?($errors->first('district_id')):'' }}
      </font>
   </div>
 
+
   <div class="form-group">
-    <label for="division">Upazilla Name<span class="text-danger">*</span></label>
-     {{ Form::text('name', NULL, [ 'class'=>'form-control', 'id' => 'division', 'placeholder' => 'Write Upazilla Name' ]) }}
+    <label for="upazilla_id">Upazilla Name<span class="text-danger">*</span></label>
+    {{--  {{ Form::text('name', NULL, [ 'class'=>'form-control', 'id' => 'division', 'placeholder' => 'Write Upazilla Name' ]) }} --}}
+     <select name="upazilla_id" class="form-control" id="upazilla_id">
+         <option value=""> Select Upazilla</option>
+  </select>  
       <font style="color: red">
-      {{ ($errors->has('name'))?($errors->first('name')):'' }}
+      {{ ($errors->has('upazilla_id'))?($errors->first('upazilla_id')):'' }}
      </font>
   </div>
+
+
+<div class="form-group">
+    <label for="division">Union Name<span class="text-danger">*</span></label>
+     {{ Form::text('union', NULL, [ 'class'=>'form-control', 'id' => 'division', 'placeholder' => 'Write Union Name' ]) }}
+      <font style="color: red">
+      {{ ($errors->has('union'))?($errors->first('union')):'' }}
+     </font>
+  </div>
+
 
 {{-- 
   <div class="form-group">
@@ -145,18 +159,48 @@
 
          var district_id = "{{ @$editdata->district_id }}";
          if(district_id != ''){
-            $('#district_id').val(district_id);
+            $('#district_id').val(district_id).trigger('change');
          }
-
-
        }
-
     });
-
    });
   });
 
 </script>
+
+
+
+<script>
+  $(function() {
+   $(document).on('change','#district_id',function(){
+
+    var district_id = $(this).val();
+
+    $.ajax({
+       type:"GET",
+       url:"{{route('default.get-upazilla')}}",
+       data:{district_id:district_id},
+       success:function(data){
+        var html = '<option value="">Select District</option>';
+        $.each(data,function(key,v) { 
+          html += '<option value="'+v.id+'">'+v.name+'</option>';
+        });
+
+        $('#upazilla_id').html(html);
+
+         var upazilla_id = "{{ @$editdata->upazilla_id }}";
+         if(upazilla_id != ''){
+            $('#upazilla_id').val(upazilla_id);
+         }
+       }
+    });
+   });
+  });
+
+</script>
+
+
+
 
 <script>
   $(function() {
@@ -169,5 +213,7 @@
   });
 
 </script>
+
+
 
 @stop
