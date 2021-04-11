@@ -54,6 +54,18 @@ Route::get('/get-district',[DefaultController::class, 'index'])->name('default.g
 
 Route::get('/get-upazilla',[DefaultController::class, 'upazilla'])->name('default.get-upazilla');
 
+Route::get('/get-union',[DefaultController::class, 'union'])->name('default.get-union');
+
+Route::get('/get-word',[DefaultController::class, 'word'])->name('default.get-word');
+
+
 
 use App\Http\Controllers\Backend\UnionController;
 Route::resource('union_all', UnionController::class);
+
+
+use App\Http\Controllers\Backend\WordNoController;
+Route::resource('word_no_all', WordNoController::class);
+
+use App\Http\Controllers\Backend\VillageController;
+Route::resource('village', VillageController::class);

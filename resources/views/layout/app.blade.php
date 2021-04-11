@@ -145,29 +145,29 @@
 
 
  <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item @if($main_menu == 'Word') active @endif">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseeight"
                     aria-expanded="true" aria-controls="collapseeight">
                    <i class="fa fa-check-square" aria-hidden="true"></i>
                     <span>Manage Word No</span>
                 </a>
-                <div id="collapseeight" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseeight" class="collapse @if($main_menu == 'Word') show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ url('advertisment') }}">View Word</a>
+                        <a class="collapse-item  @if($sub_menu == 'View') active @endif" href="{{ url('word_no_all') }}">View Word</a>
                        
                     </div>
                 </div>
             </li>          
 <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item @if($main_menu == 'Village') active @endif">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseeNine"
                     aria-expanded="true" aria-controls="collapseeNine">
                    <i class="fa fa-check-square" aria-hidden="true"></i>
                     <span>Manage Village</span>
                 </a>
-                <div id="collapseeNine" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseeNine" class="collapse @if($main_menu == 'Village') show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ url('advertisment') }}">View Village</a>
+                        <a class="collapse-item @if($sub_menu == 'View') active @endif" href="{{ url('village') }}">View Village</a>
                        
                     </div>
                 </div>

@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ZillaNew;
 use App\Models\Thanaaa;
+use App\Models\Union;
+use App\Models\WordNo;
+
+
 
 class DefaultController extends Controller
 {
@@ -26,4 +30,24 @@ class DefaultController extends Controller
 
     	return response()->json($allupazilla);
     }
+
+  public function union(Request $request)
+  {
+  	    $upazilla_id = $request->upazilla_id;
+
+    	  $allunion = Union::where('upazilla_id',$upazilla_id)->get();
+
+    	  return response()->json($allunion);
+  }
+
+   public function word(Request $request)
+   {
+        $union_id = $request->union_id;
+
+        $allvillage = WordNo::where('union_id',$union_id)->get();
+
+        return response()->json($allvillage);
+   }
+
+
 }

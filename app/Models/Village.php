@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Union extends Model
+class Village extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class Union extends Model
     	return $this->belongsTo(Division::class);
     }
 
-     public function district()
+   public function district()
     {
     	return $this->belongsTo(ZillaNew::class,'district_id','id');
     }
@@ -24,5 +24,16 @@ class Union extends Model
     {
     	return $this->belongsTo(Thanaaa::class,'upazilla_id','id');
     }
+
+   public function union()
+    {
+    	return $this->belongsTo(Union::class,'union_id','id');
+    }
+
+    public function word()
+    {
+    	return $this->belongsTo(WordNo::class,'word_id','id');
+    }
     
+
 }

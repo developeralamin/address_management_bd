@@ -20,7 +20,7 @@
 @endif
  
   	<div class="col-md-6 text-right">
-  	 	<a href="{{ url('union_all') }}" class="btn btn-danger"> <i class="fa fa-minus"></i> Back </a>
+  	 	<a href="{{ url('word_no_all') }}" class="btn btn-danger"> <i class="fa fa-minus"></i> Back </a>
   	 </div>
   </div>
   
@@ -58,11 +58,11 @@
 
     @if(@$editdata)
 
-    {{  Form::model($editdata,['route' =>['union_all.update',$editdata->id], 'method' => 'put']) }}
+    {{  Form::model($editdata,['route' =>['word_no_all.update',$editdata->id], 'method' => 'put']) }}
    
     @else
 
-    {!! Form::open(['route' => 'union_all.store','method' => 'post']) !!}
+    {!! Form::open(['route' => 'word_no_all.store','method' => 'post']) !!}
 
     @endif
 
@@ -99,7 +99,7 @@
     {{--  {{ Form::text('name', NULL, [ 'class'=>'form-control', 'id' => 'division', 'placeholder' => 'Write Upazilla Name' ]) }} --}}
      <select name="upazilla_id" class="form-control" id="upazilla_id">
          <option value=""> Select Upazilla</option>
-  </select>  
+    </select>  
       <font style="color: red">
       {{ ($errors->has('upazilla_id'))?($errors->first('upazilla_id')):'' }}
      </font>
@@ -107,13 +107,24 @@
 
 
 <div class="form-group">
-    <label for="division">Union Name<span class="text-danger">*</span></label>
-     {{ Form::text('union', NULL, [ 'class'=>'form-control', 'id' => 'division', 'placeholder' => 'Write Union Name' ]) }}
+    <label for="union_id">Union Name<span class="text-danger">*</span></label>
+     {{-- {{ Form::text('union', NULL, [ 'class'=>'form-control', 'id' => 'division', 'placeholder' => 'Write Union Name' ]) }} --}}
+      <select name="union_id" class="form-control" id="union_id">
+         <option value=""> Select Union</option>
+    </select>  
+
       <font style="color: red">
-      {{ ($errors->has('union'))?($errors->first('union')):'' }}
+      {{ ($errors->has('union_id'))?($errors->first('union_id')):'' }}
      </font>
   </div>
 
+<div class="form-group">
+    <label for="division">Word No.<span class="text-danger">*</span></label>
+     {{ Form::text('word', NULL, [ 'class'=>'form-control', 'id' => 'division', 'placeholder' => 'Write Word No.' ]) }}
+      <font style="color: red">
+      {{ ($errors->has('word'))?($errors->first('word')):'' }}
+     </font>
+  </div>
 
 {{-- 
   <div class="form-group">
@@ -138,6 +149,9 @@
 
 <script src="{{ asset('asset/jquery-3.6.0.min.js') }}"></script>
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+
+
+{{-- For select district--}}
 
 <script>
   $(function() {
@@ -169,6 +183,7 @@
 </script>
 
 
+{{-- For select Upazilla--}}
 
 <script>
   $(function() {
@@ -190,7 +205,7 @@
 
          var upazilla_id = "{{ @$editdata->upazilla_id }}";
          if(upazilla_id != ''){
-            $('#upazilla_id').val(upazilla_id);
+            $('#upazilla_id').val(upazilla_id).trigger('change');
          }
        }
     });
@@ -199,6 +214,37 @@
 
 </script>
 
+
+{{-- For select Union--}}
+
+<script>
+  $(function() {
+   $(document).on('change','#upazilla_id',function(){
+
+    var upazilla_id = $(this).val();
+
+    $.ajax({
+       type:"GET",
+       url:"{{route('default.get-union')}}",
+       data:{upazilla_id:upazilla_id},
+       success:function(data){
+        var html = '<option value="">Select Union</option>';
+        $.each(data,function(key,v) { 
+          html += '<option value="'+v.id+'">'+v.union+'</option>';
+        });
+
+        $('#union_id').html(html);
+
+         var union_id = "{{ @$editdata->union_id }}";
+         if(union_id != ''){
+            $('#union_id').val(union_id);
+         }
+       }
+    });
+   });
+  });
+
+</script>
 
 
 

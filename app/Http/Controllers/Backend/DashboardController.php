@@ -23,6 +23,9 @@ class DashboardController extends Controller
         $this->data['division']           = Division::count('id');
         $this->data['district']           = ZillaNew::count('id');
         $this->data['thana']              = Thanaaa::count('id');
+        $this->data['union']              = Thanaaa::count('id');
+        $this->data['word']               = Thanaaa::count('id');
+        $this->data['village']               = Thanaaa::count('id');
     
     	return view('dashboard',$this->data);
     }
