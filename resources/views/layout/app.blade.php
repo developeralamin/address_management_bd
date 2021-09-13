@@ -53,7 +53,7 @@
             <hr class="sidebar-divider">
 
 <!-- Nav Item - Pages Collapse Menu -->
- <li class="nav-item">
+{{--  <li class="nav-item">
          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="true" aria-controls="collapseThree">
                   <i class="fa fa-fire" aria-hidden="true"></i>
@@ -65,10 +65,10 @@
                        
     </div>
      </div>
- </li>
+ </li> --}}
             
       <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+          {{--   <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -80,7 +80,7 @@
                        
                     </div>
                 </div>
-            </li>
+            </li> --}}
           
       <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item @if ($main_menu == 'Division') active @endif">
@@ -202,18 +202,17 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
+                    <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                </div>
+            </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -328,30 +327,31 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('asset/vendor/jquery/jquery.min.js') }} "></script>
-    <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('asset/vendor/jquery/jquery.min.js') }} "></script>
+<script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('asset/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('asset/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('asset/js/sb-admin-2.min.js') }} "></script>
+<script src="{{ asset('asset/js/sb-admin-2.min.js') }} "></script>
        <!-- Page level plugins -->
-    <script src="{{ asset('asset/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('asset/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('asset/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('asset/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('asset/js/demo/datatables-demo.js') }}"></script>
+<!-- Page level custom scripts -->
+<script src="{{ asset('asset/js/demo/datatables-demo.js') }}"></script>
 </body>
 
 </html>

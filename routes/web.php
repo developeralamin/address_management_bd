@@ -49,13 +49,13 @@ Route::resource('district', ZillaController::class);
 use App\Http\Controllers\Backend\UpazillaController;
 Route::resource('upazilla', UpazillaController::class);
 
+
 use App\Http\Controllers\Backend\DefaultController;
 Route::get('/get-district',[DefaultController::class, 'index'])->name('default.get-district');
 
 Route::get('/get-upazilla',[DefaultController::class, 'upazilla'])->name('default.get-upazilla');
 
 Route::get('/get-union',[DefaultController::class, 'union'])->name('default.get-union');
-
 Route::get('/get-word',[DefaultController::class, 'word'])->name('default.get-word');
 
 
@@ -63,9 +63,13 @@ Route::get('/get-word',[DefaultController::class, 'word'])->name('default.get-wo
 use App\Http\Controllers\Backend\UnionController;
 Route::resource('union_all', UnionController::class);
 
-
 use App\Http\Controllers\Backend\WordNoController;
 Route::resource('word_no_all', WordNoController::class);
 
 use App\Http\Controllers\Backend\VillageController;
 Route::resource('village', VillageController::class);
+
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

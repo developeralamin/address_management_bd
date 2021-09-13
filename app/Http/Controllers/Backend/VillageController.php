@@ -47,7 +47,7 @@ class VillageController extends Controller
            // $this->data['mode']              = 'Create';
            $this->data['division']          = Division::arrayForSelectDivision();
 
-         return view('backend.village.form-village',$this->data);
+          return view('backend.village.form-village',$this->data);
     }
 
     /**
